@@ -66,26 +66,11 @@ $(INSTALLED_KERNEL_TARGET): $(TARGET_PREBUILT_KERNEL) | $(ACP)
 # Copy additional target-specific files
 #----------------------------------------------------------------------
 include $(CLEAR_VARS)
-LOCAL_MODULE       := vold.fstab
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := $(LOCAL_MODULE)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := init.target.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := $(LOCAL_MODULE)
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR_ETC)/init/hw
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := gpio-keys.kl
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := $(LOCAL_MODULE)
-LOCAL_MODULE_PATH  := $(TARGET_OUT_KEYLAYOUT)
 include $(BUILD_PREBUILT)
 
 ifeq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
@@ -117,6 +102,8 @@ endif
 #Create dsp directory
 $(shell mkdir -p $(TARGET_OUT_VENDOR)/lib/dsp)
 
+include device/qcom/vendor-common/MergeConfig.mk
+
 #----------------------------------------------------------------------
 # Radio image
 #----------------------------------------------------------------------
@@ -135,11 +122,9 @@ include device/qcom/wlan/skunk/AndroidBoardWlan.mk
 endif
 
 #----------------------------------------------------------------------
-# extra images
+# Configs common to AndroidBoard.mk for all targets
 #----------------------------------------------------------------------
-#ifeq (, $(wildcard vendor/qcom/build/tasks/generate_extra_images.mk))
-include device/qcom/common/generate_extra_images.mk
-#endif
+include vendor/qcom/opensource/core-utils/build/AndroidBoardCommon.mk
 
 #----------------------------------------------------------------------
 # override default make with prebuilt make path (if any)

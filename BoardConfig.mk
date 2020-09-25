@@ -10,14 +10,13 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo300
-#TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT := generic
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a75
+TARGET_2ND_CPU_VARIANT := cortex-a9
 
 #Enable HW based full disk encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -220,9 +219,6 @@ TARGET_USES_GRALLOC1 := true
 
 # Enable sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
-
-# Enable sensor Version V_2
-USE_SENSOR_HAL_VER := 2.0
 
 #Enable QTI specific Camera2Client layer
 TARGET_USES_QTI_CAMERA2CLIENT := true
